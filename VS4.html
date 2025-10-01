@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alpha Traders - خدماتنا</title>
+  <link rel="icon" type="image/png" href="photo_2025-07-20_20-02-16.jpg" />
+  <style>
+    :root {
+      --bg:#0a0a0a;
+      --gold:#d4af37;
+      --muted: rgba(255,255,255,0.6);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      --transition-speed: 0.4s;
+    }
+
+    body {
+      background: var(--bg);
+      color: #f5f5f5;
+      margin: 0;
+      opacity: 0;
+      animation: fadeInBody 1s forwards;
+    }
+
+    @keyframes fadeInBody {
+      to { opacity: 1; }
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 40px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo img {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+    }
+
+    .brand h1 {
+      font-size: 26px;
+      color: var(--gold);
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    h2 {
+      color: var(--gold);
+      margin: 30px 0 20px;
+      font-size: 22px;
+    }
+
+    /* التبويبات */
+    .tabs {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .tab {
+      background: #111;
+      padding: 12px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background var(--transition-speed), transform var(--transition-speed);
+    }
+
+    .tab:hover {
+      background: var(--gold);
+      color: #111;
+      transform: scale(1.05);
+    }
+
+    .tab.active {
+      background: var(--gold);
+      color: #111;
+    }
+
+    .tab-content {
+      display: none;
+      background: #111;
+      border-radius: 12px;
+      padding: 25px 20px;
+      min-height: 150px;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: fadeInContent 0.5s forwards;
+    }
+
+    @keyframes fadeInContent {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Cards الباقات */
+    .packages-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .package-card {
+      background: #111;
+      border-radius: 15px;
+      padding: 25px 20px;
+      width: 250px;
+      text-align: center;
+      transition: transform 0.4s, box-shadow 0.4s, background 0.4s;
+    }
+
+    .package-card:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 0 20px var(--gold);
+      background: #1a1a1a;
+    }
+
+    .package-icon {
+      font-size: 40px;
+      margin-bottom: 12px;
+    }
+
+    .package-card.bronze .package-icon { color: #cd7f32; }
+    .package-card.silver .package-icon { color: #c0c0c0; }
+    .package-card.gold .package-icon { color: #ffd700; }
+    .package-card.diamond .package-icon { color: #00bfff; }
+    .package-card.eternal .package-icon { color: #ff9900; }
+
+    .package-card h3 { color: var(--gold); margin-bottom: 8px; }
+    .package-card p { color: var(--muted); margin-bottom: 12px; line-height: 1.5; }
+
+    .subscribe-btn {
+      background: var(--gold);
+      color: #111;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.4s, transform 0.4s;
+    }
+
+    .subscribe-btn:hover { background: #ffcc00; transform: scale(1.05); }
+
+    /* Cards خدمة العملاء */
+    .support-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .support-card {
+      background: #111;
+      border-radius: 15px;
+      padding: 25px 20px;
+      width: 220px;
+      text-align: center;
+      transition: transform 0.5s, box-shadow 0.5s;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .support-card:hover {
+      transform: scale(1.1) rotate(-1deg);
+      box-shadow: 0 0 25px var(--gold);
+      background: #1a1a1a;
+    }
+
+    .support-icon {
+      font-size: 50px;
+      margin-bottom: 12px;
+      transition: transform 0.5s;
+    }
+
+    .support-card:hover .support-icon { transform: rotate(15deg) scale(1.2); }
+
+    .support-card h3 { color: var(--gold); margin-bottom: 8px; }
+    .support-card p { color: var(--muted); line-height: 1.5; }
+
+    /* زر النسخ */
+    .copy-btn {
+      margin-top: 8px;
+      background: #444;
+      color: #fff;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .copy-btn:hover {
+      background: var(--gold);
+      color: #111;
+      transform: scale(1.05);
+    }
+
+    /* رسالة نسخ */
+    .tooltip {
+      position: absolute;
+      top: -25px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: #111;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 12px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s;
+    }
+
+    /* تبويب الخدمات والقناة */
+    .services-container {
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:15px;
+    }
+
+    .telegram-link div {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      background:#111;
+      padding:12px 20px;
+      border-radius:12px;
+      cursor:pointer;
+      transition: transform 0.4s, box-shadow 0.4s;
+    }
+
+    .telegram-link div:hover {
+      transform: rotate(-5deg) scale(1.1);
+      box-shadow: 0 0 25px var(--gold);
+    }
+
+    footer {
+      margin-top: 50px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo"><img src="photo_2025-07-20_20-02-16.jpg" alt="Alpha Traders Logo"></div>
+        <div>
+          <h1>Alpha Traders</h1>
+          <div class="subtitle">خدماتنا وأسعار الباقات</div>
+        </div>
+      </div>
+    </header>
+
+    <h2>✨ اختر ما تريد معرفته</h2>
+
+    <div class="tabs">
+      <div class="tab active" data-target="plans">أسعار الباقات</div>
+      <div class="tab" data-target="support">خدمة العملاء</div>
+      <div class="tab" data-target="services">الخدمات والقناة المجانية</div>
+    </div>
+
+    <!-- تبويب الباقات -->
+    <div id="plans" class="tab-content active">
+      <div class="packages-container">
+        <div class="package-card bronze">
+          <div class="package-icon">🥉</div>
+          <h3>الباقة البرونزية</h3>
+          <p>50 دولار 😯</p>
+          <p>قناة خاصة وحصرية - اشتراك شهري</p>
+          <button class="subscribe-btn">اشتراك</button>
+        </div>
+        <div class="package-card silver">
+          <div class="package-icon">🥈</div>
+          <h3>الباقة الفضية</h3>
+          <p>100 دولار 💯</p>
+          <p>اشتراك 3 أشهر حسب اختيارك</p>
+          <button class="subscribe-btn">اشتراك</button>
+        </div>
+        <div class="package-card gold">
+          <div class="package-icon">🥇</div>
+          <h3>الباقة الذهبية</h3>
+          <p>200 دولار 😎</p>
+          <p>اشتراك لمدة 5 أشهر</p>
+          <button class="subscribe-btn">اشتراك</button>
+        </div>
+        <div class="package-card diamond">
+          <div class="package-icon">💎</div>
+          <h3>الباقة الماسية</h3>
+          <p>300 دولار 🔥</p>
+          <p>اشتراك لمدة 8 أشهر</p>
+          <button class="subscribe-btn">اشتراك</button>
+        </div>
+        <div class="package-card eternal">
+          <div class="package-icon">💸</div>
+          <h3>الاشتراك الدائم</h3>
+          <p>500 💸</p>
+          <p>اشتراك لمدة سنة كاملة تشمل كل الخدمات</p>
+          <p><strong>مع MasterTraders انت في أمان</strong></p>
+          <button class="subscribe-btn">اشتراك</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- تبويب خدمة العملاء -->
+    <div id="support" class="tab-content">
+      <div class="support-container">
+        <div class="support-card email">
+          <div class="support-icon">📧</div>
+          <h3>البريد الإلكتروني</h3>
+          <p id="email-text">alphatraderyemen@gmail.com</p>
+          <button class="copy-btn" data-copy="#email-text">نسخ البريد</button>
+          <div class="tooltip">تم النسخ!</div>
+        </div>
+        <div class="support-card phone">
+          <div class="support-icon">📞</div>
+          <h3>الهاتف</h3>
+          <p id="phone-text">+967712639814</p>
+          <button class="copy-btn" data-copy="#phone-text">نسخ الرقم</button>
+          <div class="tooltip">تم النسخ!</div>
+        </div>
+        <div class="support-card telegram">
+          <div class="support-icon">💬</div>
+          <h3>فريق الدعم على Telegram</h3>
+          <p id="telegram-text">@ATX_100</p>
+          <button class="copy-btn" data-copy="#telegram-text">نسخ اليوزر</button>
+          <div class="tooltip">تم النسخ!</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- تبويب الخدمات والقناة -->
+    <div id="services" class="tab-content">
+      <div class="services-container">
+        <p>- تحليلات يومية مجانية</p>
+        <p>- إشعارات التداول المباشر</p>
+        <a href="https://t.me/A_T_Signals" target="_blank" class="telegram-link">
+          <div>
+            <span style="font-size:30px;">💬</span>
+            <span style="color:var(--gold); font-weight:bold;">قناة Telegram المجانية</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <footer>© 2025 Alpha Traders — جميع الحقوق محفوظة</footer>
+  </div>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const contents = document.querySelectorAll('.tab-content');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        contents.forEach(c => c.classList.remove('active'));
+        document.getElementById(tab.dataset.target).classList.add('active');
+      });
+    });
+
+    // نسخ النصوص
+    const copyBtns = document.querySelectorAll('.copy-btn');
+    copyBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const selector = btn.getAttribute('data-copy');
+        const text = document.querySelector(selector).innerText;
+        navigator.clipboard.writeText(text).then(() => {
+          const tooltip = btn.nextElementSibling;
+          tooltip.style.opacity = 1;
+          setTimeout(() => { tooltip.style.opacity = 0; }, 1500);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
